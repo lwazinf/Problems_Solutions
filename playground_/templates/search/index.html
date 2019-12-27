@@ -1,0 +1,73 @@
+{% extends 'base.html'%}
+{% block title %}Search Test{% endblock %}
+{% block content %}
+
+      {% load static %}
+
+<div class="header_img mb-3">
+  <img src="{% static '/img/village.jpg' %}" />
+  <div class="blur">
+    <div class="bg">
+      <span class="icon"><i class="fas fa-plus"></i></span>
+      <div calss="spacing">
+        <span class="fisrt">New </span>
+        <span class="second">Accom</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<form method="post" action="{% url 'home' %}">
+  {% csrf_token %}
+  <div class="form-group">
+    <div class="input-group">
+      <input name="search" value="{{ request }}" type="text" class="form-control" placeholder="Search">
+      <div class='input-group-append'>
+        <button class="btn btn-outline-dark" type="sumbit">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+
+  <form method="post" action="{% url 'home' %}" enctype="multipart/form-data">
+    <div class="btn-group btn-group-toggle mb-3" data-toggle="buttons">
+      <label class="btn btn-default btn-sm active">
+        <input type="radio" name="rbutton" id="option1" autocomplete="off" value="finger">
+        <i class="fas fa-fingerprint"></i>
+        <small>id</small>
+      </label>
+      <label class="btn btn-default btn-sm">
+        <input type="radio" name="rbutton" id="option2" autocomplete="off" value="head">
+        <i class="fas fa-heading"></i>
+        <small>title</small>
+      </label>
+    </div>
+  </form>
+
+<br>
+{% for p in post %}
+<div style='background-color:{{ p.color }}'>
+<form method="post" action="{% url 'like' %}">
+  {% csrf_token %}
+    <button class="btn btn-default btn-sm" type="submit">
+      <i class="fas fa-paper-plane"></i>
+      <small>Apply</small>
+    </button>
+</form>
+<form method="post" action="{% url 'dislike' %}">
+  {% csrf_token %}
+    <button class="btn btn-default btn-sm" type="submit">
+      <i class="fas fa-times"></i>
+      <small>Cancel</small>
+    </button>
+</form>
+
+<small>Current Applications: {{ p.applications }}</small>
+</div>
+{% endfor %}
+
+{% endblock %}

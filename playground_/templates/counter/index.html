@@ -1,0 +1,17 @@
+{% extends 'base.html'%}
+{% block title %}Search Test{% endblock %}
+{% block content %}
+
+      {% load static %}
+
+  <form method="post" action="{% url 'counter' %}">
+    {% csrf_token %}
+
+    <div class="grid-group">
+    <input class="btn btn-secondary" type="submit" value="Like"></input>
+    <span>{{ object.applications }}</span>
+    </div>
+
+  </form>
+
+{% endblock %}
