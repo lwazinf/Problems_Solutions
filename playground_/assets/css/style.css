@@ -2,7 +2,14 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP:400,800&display=swap');
 
 body {
+}
 
+
+.shadow-textarea textarea.form-control::placeholder {
+    font-weight: 300;
+}
+.shadow-textarea textarea.form-control {
+    padding-left: 0.8rem;
 }
 
 
@@ -84,8 +91,9 @@ body {
 
 button {
   min-height: auto;
-  min-width: 100px;
+  min-width: auto;
 }
+
 
 /* Image Hover Section */
 

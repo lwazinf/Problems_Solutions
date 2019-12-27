@@ -17,19 +17,6 @@
   </div>
 </div>
 
-<form method="post" action="{% url 'home' %}">
-  {% csrf_token %}
-  <div class="form-group">
-    <div class="input-group">
-      <input name="search" value="{{ request }}" type="text" class="form-control" placeholder="Search">
-      <div class='input-group-append'>
-        <button class="btn btn-outline-dark" type="sumbit">
-          <i class="fas fa-search"></i>
-        </button>
-      </div>
-    </div>
-  </div>
-</form>
 
 
 
@@ -48,9 +35,34 @@
     </div>
   </form>
 
-<br>
+  <form method="post" action="{% url 'home' %}">
+    {% csrf_token %}
+    <div class="form-group">
+      <div class="input-group">
+        <input name="search" value="{{ request }}" type="text" class="form-control" placeholder="Search">
+        <div class='input-group-append'>
+          <button class="btn btn-outline-dark" type="sumbit">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <form method="post" action="{% url 'report' %}">
+    {% csrf_token %}
+
+    <div class="form-group shadow-textarea">
+      <label for="exampleFormControlTextarea6"></label>
+      <textarea name="report_text" class="form-control z-depth-1" id="exampleFormControlTextarea6" rows="3" placeholder="Write something here..."></textarea>
+      <button class="btn btn-outline-dark" type="sumbit">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+  </form>
+
 {% for p in post %}
-<div style='background-color:{{ p.color }}'>
+<div style="margin-bottom:5px; border: 1px solid black; padding:5px; border-radius:5px;">
 <form method="post" action="{% url 'like' %}">
   {% csrf_token %}
     <button class="btn btn-default btn-sm" type="submit">
@@ -69,5 +81,8 @@
 <small>Current Applications: {{ p.applications }}</small>
 </div>
 {% endfor %}
+
+
+
 
 {% endblock %}

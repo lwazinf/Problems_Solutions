@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.db.models import Q
-from .models import post
+from .models import post, report as myreport
 
 # Create your views here.
 
@@ -37,9 +37,15 @@ def like(request):
         return redirect("home")
 
 def dislike(request):
-
     if request.method == 'POST':
         Post = post.objects.get(id=1)
         Post.applications -= 1
         Post.save()
+        return redirect("home")
+
+def report(request):
+    if request.method == 'POST':
+        Report = myreport()
+        Report.text = request.POST['report_text']
+        Report.save()
         return redirect("home")
